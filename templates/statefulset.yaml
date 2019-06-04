@@ -343,9 +343,11 @@ spec:
           items:
             - key: "zookeeper.properties"
               path: "zookeeper.properties"
+{{- if .Values.ca.enabled }}
       - name: ca-mitm-token
         secret:
           secretName: {{ template "apache-nifi.fullname" . }}-ca-mitm-token
+{{- end }}
   volumeClaimTemplates:
     - metadata:
         name: "data"
