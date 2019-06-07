@@ -6,12 +6,12 @@
 replicaCount: 2
 
 nifi:
-  version: "1.6.0"
+  version: 1.9.2
 
 image:
-  repository: pepov/nifi
+  repository: apache/nifi
   pullPolicy: IfNotPresent
-  tag: "1.6.0"
+  tag: 1.9.2
 
 sts:
   # Parallel podManagementPolicy for faster bootstrap and teardown. Default is OrderedReady.

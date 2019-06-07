@@ -147,7 +147,7 @@ spec:
           
           prop_replace nifi.remote.input.host ${FQDN}
           prop_replace nifi.cluster.node.address ${FQDN}
-          prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
+          prop_replace nifi.zookeeper.connect.string ${NIFI_ZK_CONNECT_STRING}
 
 {{- if .Values.ca.enabled }}
           prop_replace nifi.web.https.host ${FQDN}
@@ -183,7 +183,7 @@ spec:
           name: cluster
           protocol: TCP
         env:
-        - name: NIFI_ZOOKEEPER_CONNECT_STRING
+        - name: NIFI_ZK_CONNECT_STRING
           value: {{ template "zookeeper.url" . }}
         lifecycle:
           preStop:

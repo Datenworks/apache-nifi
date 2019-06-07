@@ -22,7 +22,7 @@
 <stateManagement>
     <!--
         State Provider that stores state locally in a configurable directory. This Provider requires the following properties:
-        
+
         Directory - the directory to store components' state in. If the directory being used is a sub-directory of the NiFi installation, it
                     is important that the directory be copied over to the new version when upgrading NiFi.
         Always Sync - If set to true, any change to the repository will be synchronized to the disk, meaning that NiFi will ask the operating system not to cache the information. This is very
@@ -42,14 +42,14 @@
 
     <!--
         State Provider that is used to store state in ZooKeeper. This Provider requires the following properties:
-        
+
         Root Node - the root node in ZooKeeper where state should be stored. The default is '/nifi', but it is advisable to change this to a different value if not using
                    the embedded ZooKeeper server and if multiple NiFi instances may all be using the same ZooKeeper Server.
-                   
+
         Connect String - A comma-separated list of host:port pairs to connect to ZooKeeper. For example, myhost.mydomain:2181,host2.mydomain:5555,host3:6666
-        
+
         Session Timeout - Specifies how long this instance of NiFi is allowed to be disconnected from ZooKeeper before creating a new ZooKeeper Session. Default value is "30 seconds"
-        
+
         Access Control - Specifies which Access Controls will be applied to the ZooKeeper ZNodes that are created by this State Provider. This value must be set to one of:
                             - Open  : ZNodes will be open to any ZooKeeper client.
                             - CreatorOnly  : ZNodes will be accessible only by the creator. The creator will have full access to create children, read, write, delete, and administer the ZNodes.
@@ -58,7 +58,7 @@
     <cluster-provider>
         <id>zk-provider</id>
         <class>org.apache.nifi.controller.state.providers.zookeeper.ZooKeeperStateProvider</class>
-        <property name="Connect String"></property>
+        <property name="Connect String">{{ template "zookeeper.url" . }}</property>
         <property name="Root Node">/nifi</property>
         <property name="Session Timeout">10 seconds</property>
         <property name="Access Control">Open</property>
